@@ -1,5 +1,5 @@
 /* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
-
+let products = [];
 /* Create 3 or more product objects using object literal notation 
    Each product should include five properties
    - name: name of product (string)
@@ -8,49 +8,120 @@
    - productId: unique id for the product (number)
    - image: picture of product (url string)
 */
+const product1 = { name: "Cherry",
+  price: 5.99, 
+  quantity: 0, 
+  productId: 1, 
+  image: "images/cherry.jpg",
+}
 
-/* Images provided in /images folder. All images from Unsplash.com
-   - cherry.jpg by Mae Mu
-   - orange.jpg by Mae Mu
-   - strawberry.jpg by Allec Gomes
-*/
+const product2 = { name: "Orange",
+  price: 2.99,
+  quantity: 0,
+  productId: 2,
+  image: "images/orange,jpg",
+}
+
+const product3 = { name: "Strawberry",
+price: 5.99,
+quantity: 0,
+productId: 3,
+image: "images/strawberry,jpg",
+}
+
 
 /* Declare an empty array named cart to hold the items in the cart */
-
+const cart = [ ]
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
   - addProductToCart should then increase the product's quantity
   - if the product is not already in the cart, add it to the cart
 */
-
+function addProductToCart(productId) {
+  let product = getProductById(productId)
+  product.quantity += 1
+  if (! cart.includes(product)) {
+      cart.push(product)
+  }
+}  
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
 */
+function increaseQuantity(productId){
+  if (productId === cherry.productId){
+    cherry.quantity ++;
+  }
+  else if (productId === orange.productId){
+    orange.quantity++;
+  }
+  else if (productId === strawberry.productId){
+    strawberry.quantity ++;
+  }
+}
+
 
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   - decreaseQuantity should get the correct product based on the productId
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 */
-
+function decreaseQuantity(productId) {
+  const product = cart.find(item => item.productId === productId);
+  if (product) {
+    product.quantity--;
+    if (product.quantity ===0) {
+      const index = cart.indexoOf(product);
+      cart.splice(index, 1);
+    }
+  }
+}
 /* Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
-
+function removeProductFromCart(productId) {
+  const product = cart.find(item => item. productId === productId);
+  if (product) {
+    product.quantity = 0;
+    const index = cart.indexOf(product);
+    cart.splice(index, 1);
+  } 
+}
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total of all products
   - cartTotal should return the sum of the products in the cart
 */
+function cartTotal() {
+  let total = 0;
+  //Iterate througn the cart and add up the prices of all products 
+  let totalPrice = 0
+  for (let i = 0; i < cart.length; i++) {
+    totalPrice +=cart[i].price
+  }
 
-/* Create a function called emptyCart that empties the products from the cart */
-
+  console.log(totalPrice);
+}/* Create a function called emptyCart that empties the products from the cart */
+function emptyCart() {
+  cart = [];
+}
 /* Create a function named pay that takes in an amount as an argument
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
 */
+function pay(amount) {
+  let total = cartTotal();
+
+  if (amount >= total) {
+
+    emptyCart();
+    return amount - total;
+  } esle 
+  {
+    return total - amount;
+  }
+}
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
@@ -71,6 +142,6 @@ module.exports = {
    cartTotal,
    pay, 
    emptyCart,
+}
    /* Uncomment the following line if completing the currency converter bonus */
    // currency
-}
