@@ -1,5 +1,33 @@
-/* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
 let products = [];
+
+/* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
+const product1 = {
+  name: "Cherry",
+  price: 5.99, 
+  quantity: 0, 
+  productId: 1, 
+  image: "images/cherry.jpg",
+}
+
+const product2 = { 
+  name: "Orange",
+  price: 2.99,
+  quantity: 0,
+  productId: 2,
+  image: "images/orange.jpg",
+}
+
+const product3 = { 
+name: "Strawberry",
+price: 5.99,
+quantity: 0,
+productId: 3,
+image: "images/strawberry.jpg"
+}
+
+products.push[product1, product2, products];
+
+
 /* Create 3 or more product objects using object literal notation 
    Each product should include five properties
    - name: name of product (string)
@@ -8,57 +36,41 @@ let products = [];
    - productId: unique id for the product (number)
    - image: picture of product (url string)
 */
-const product1 = { name: "Cherry",
-  price: 5.99, 
-  quantity: 0, 
-  productId: 1, 
-  image: "images/cherry.jpg",
-}
 
-const product2 = { name: "Orange",
-  price: 2.99,
-  quantity: 0,
-  productId: 2,
-  image: "images/orange,jpg",
-}
-
-const product3 = { name: "Strawberry",
-price: 5.99,
-quantity: 0,
-productId: 3,
-image: "images/strawberry,jpg",
-}
-
+/* Images provided in /images folder. All images from Unsplash.com
+   - cherry.jpg by Mae Mu
+   - orange.jpg by Mae Mu
+   - strawberry.jpg by Allec Gomes
+*/
 
 /* Declare an empty array named cart to hold the items in the cart */
-const cart = [ ]
+let cart = [];
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
   - addProductToCart should then increase the product's quantity
   - if the product is not already in the cart, add it to the cart
 */
+
+
+
 function addProductToCart(productId) {
-  let product = getProductById(productId)
-  product.quantity += 1
-  if (! cart.includes(product)) {
-      cart.push(product)
-  }
+    let product = products.find(product => product.productId === productId);
+    product.quantity += 1
+    if (! cart.includes(product)) {
+        cart.push(product)
+    }
 }  
+
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
 */
-function increaseQuantity(productId){
-  if (productId === cherry.productId){
-    cherry.quantity ++;
-  }
-  else if (productId === orange.productId){
-    orange.quantity++;
-  }
-  else if (productId === strawberry.productId){
-    strawberry.quantity ++;
-  }
+function increaseQuantity(productId) {
+  let product = cart.find(product => product.productId === productId);
+  product += 1;
 }
+
+
 
 
 /* Create a function named decreaseQuantity that takes in the productId as an argument
@@ -76,6 +88,7 @@ function decreaseQuantity(productId) {
     }
   }
 }
+
 /* Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
   - removeProductFromCart should update the product quantity to 0
@@ -89,22 +102,34 @@ function removeProductFromCart(productId) {
     cart.splice(index, 1);
   } 
 }
+
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total of all products
   - cartTotal should return the sum of the products in the cart
 */
 function cartTotal() {
-  let total = 0;
-  //Iterate througn the cart and add up the prices of all products 
+  let sum = 0;
+  for (const product of cart) {
+    sum += product.quantity * product.price;
+  }
+  return sum;
+}
+  //Iterate througn the cart and add up the prices of all products
   let totalPrice = 0
+
   for (let i = 0; i < cart.length; i++) {
-    totalPrice +=cart[i].price
+    totalPrice += cart[i].price;
   }
 
   console.log(totalPrice);
-}/* Create a function called emptyCart that empties the products from the cart */
+
+
+/* Create a function called emptyCart that empties the products from the cart */
 function emptyCart() {
-  cart = [];
+  for (const product of cart) {
+    product.quantity = 0;
+    cart.splice(0, cart.length);
+  }
 }
 /* Create a function named pay that takes in an amount as an argument
   - pay will return a negative number if there is a remaining balance
@@ -133,15 +158,16 @@ function pay(amount) {
 */
 
 module.exports = {
-   products,
-   cart,
-   addProductToCart,
-   increaseQuantity,
-   decreaseQuantity,
-   removeProductFromCart,
-   cartTotal,
-   pay, 
-   emptyCart,
+  products,
+  cart,
+  addProductToCart,
+  increaseQuantity,
+  decreaseQuantity,
+  removeProductFromCart,
+  cartTotal,
+  pay, 
+  emptyCart,
 }
-   /* Uncomment the following line if completing the currency converter bonus */
-   // currency
+
+  /* Uncomment the following line if completing the currency converter bonus */
+  // currency
