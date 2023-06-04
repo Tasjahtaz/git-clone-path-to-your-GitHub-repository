@@ -25,7 +25,7 @@ productId: 3,
 image: "images/strawberry.jpg"
 }
 
-products.push[product1, product2, products];
+products.push(product1, product2, products3);
 
 
 /* Create 3 or more product objects using object literal notation 
